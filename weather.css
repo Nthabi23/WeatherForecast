@@ -1,9 +1,9 @@
 body {
-    font-family: arial, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 h1 {
-    color: #878787;
+    color: #090101;
     font-size: 24px;
     font-weight: 100;
     line-height: 28px;
@@ -23,7 +23,7 @@ li {
     list-style: none;
     margin: 0;
     padding: 0;
-    color: rgb(135, 135, 135);
+    color: rgb(0, 0, 0);
     font-size: 16px;
     font-weight: 100;
     line-height: 19px;
@@ -49,7 +49,8 @@ li:first-letter {
 }
 
 .weather {
-    border: 2px solid blue;
+    background: radial-gradient(circle at -1% 57.5%, rgb(19, 170, 82) 0%, rgb(0, 102, 43) 90%);
+    border: 2px solid rgb(28, 28, 30);
     border-radius: 20px;
     padding: 30px;
 }
