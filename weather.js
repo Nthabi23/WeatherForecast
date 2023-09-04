@@ -1,116 +1,190 @@
-function formatDate() {
-  return `${day}, ${date}, ${hour}:${min}`;
-}
-function formatDay(timestamp) {
-  let date = new Date(timestamp * 1000);
-  let day = date.getDay();
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  return days[day];
+//In your project, display the current date and time
+function updateTime(date) {
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  let dayElement = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+  let day = days[dayElement];
+  return `${day}, ${hours}:${minutes}`;
 }
+
+
+let currentDate = document.querySelector("#current-time");
+let dateElement = new Date();
+currentDate.innerHTML = updateTime(dateElement);
+
+//format forecast day
+function formatForecastDate(timestamp) {
+let date = new Date(timestamp * 1000);
+let day = date.getDay();
+let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+return days[day];
+}
+
+
+//display the forecast 
+
 function displayForecast(response) {
-  let forcast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
+  let forecast = response.data.daily;
+
   let forecastHTML = `<div class="row">`;
-  forcast.forEach(function (forecastDay, index) {
+  forecast.forEach(function (forecastDay, index) {
     if (index < 6) {
-      forecastHTML =
-        forecastHTML +
-        `
-              <div class="col-2">
-                <div class="weather-forecast-date">${formatDay(
-                  forecastDay.time
-                )}</div>
-                
-                <img
-                  src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
-                    forecastDay.condition.icon
-                  }.png"
-                  alt="overcast clouds"
-                  width="40"
-                />
-                <div class="weater-forcast-temperature">
-                  <span class="forecast-max">${Math.round(
-                    forecastDay.temperature.maximum
-                  )}° </span>
-                  <span class="forecast-min">${Math.round(
-                    forecastDay.temperature.minimum
-                  )}° </span>
-                </div>
-              </div>
-              `;
-    }
-  });
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="col-2">
+        <div class="forecast-date">${formatForecastDate(forecastDay.time)}</div>
+        <img
+          src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${forecastDay.condition.icon}.png";
+          alt=""
+          width="42"
+        />
+        <div class="weather-forecast-temperatures">
+          <span class="forecast-temperature-max" > ${Math.round(forecastDay.temperature.maximum)}° </span>
+          <span class="forecast-temperature-min"> ${Math.round(forecastDay.temperature.minimum)}° </span>
+        </div>
+      </div>
+  `;
+}
+});
 
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+ 
 }
 
-function getForecast(coordinates) {
-  let apiKey = "3f6be1c407b0d9d1933561808db358ba";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&key=${apiKey}&units=metric`;
 
-  axios.get(apiUrl).then(displayForecast);
-}
-function showTemperature(response) {
-  let Temperature = response.data.temperature.current;
-  document.querySelector("#city").innerHTML = response.data.city;
-  document.querySelector("#temp").innerHTML = Math.round(Temperature);
-  document.querySelector("#humidity").innerHTML =
-    response.data.temperature.humidity;
-  document.querySelector("#wind").innerHTML = Math.round(
-    response.data.wind.speed
-  );
-  document.querySelector("#description").innerHTML =
-    response.data.condition.description;
-  let iconElement = document.querySelector("#icon");
-  iconElement.setAttribute(
-    "src",
-    `https://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
-  );
-  iconElement.setAttribute("alt", response.data.condition.description);
-  celsiusTemperature = response.data.temperature.current;
 
-  getForecast(response.data.coordinates);
-}
+// search engine: a search bar with a button. When searching for a city (i.e. Paris), display the city name on the page after the user submits the form.
 
-function searchCity(city) {
-  let apiKey = "05b9cb3aea043f334aa88ato71fb39b0";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-
-  axios.get(apiUrl).then(showTemperature);
-}
-function handleSubmit(event) {
+function searchEngine(event) {
   event.preventDefault();
-  let city = document.querySelector("#city-input").value;
-  searchCity(city);
+  let yourcity = document.querySelector("#city-input");
+  
+  let apiKey = "aa443td2ed3a26cd6de4cd01fe8bo0b5"
+  let units = "metric"
+  let url = `https://api.shecodes.io/weather/v1/current?query=${yourcity.value}&key=${apiKey}&units=${units}`;
+  axios.get(url).then(displayTemperature);
+  
+ 
 }
 
-let now = new Date();
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let date = now.getDate();
-let hour = now.getHours();
-if (hour < 10) {
-  hour = `0${hour}`;
+// weather forecast API
+
+function weatherForecast(coordinates) {
+let apiKey = "aa443td2ed3a26cd6de4cd01fe8bo0b5";
+let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${coordinates}&key=${apiKey}`;
+console.log (apiUrl)
+axios.get(apiUrl).then(displayForecast);
 }
-let min = now.getMinutes();
-if (min < 10) {
-  min = `0${min}`;
+
+//when a user searches for a city (example: New York), it should display the name of the city on the result page and the current temperature of the city.
+function displayTemperature(response) {
+
+  celsiusTemperature = response.data.temperature.current;
+  let currentTemperature = Math.round(celsiusTemperature);
+  let temperature = document.querySelector("#temperature");
+  temperature.innerHTML = `${currentTemperature}`;
+
+   
+
+  let description = (response.data.condition.description).substring(0, 1).toUpperCase() + (response.data.condition.description).substring(1);
+  let currentDescription =document.querySelector("#description");
+  currentDescription.innerHTML = `${description}`;
+
+ let feelsLike = Math.round(response.data.temperature.feels_like);
+let feelsLikeDisplay = document.querySelector ("#feels-like");
+feelsLikeDisplay.innerHTML = `Feels like: ${feelsLike}°C`;
+
+let humidity = response.data.temperature.humidity;
+let humidityDisplay = document.querySelector ("#humidity");
+humidityDisplay.innerHTML = `Humidity: ${humidity}%`;
+
+let wind = response.data.wind.speed;
+let windDisplay = document.querySelector ("#wind");
+windDisplay.innerHTML = `Wind: ${wind}km/h`;
+
+let city = (response.data.city).substring(0, 1).toUpperCase() + (response.data.city).substring(1);
+let cityDisplay = document.querySelector ("h2")
+cityDisplay.innerHTML = `${city}`;
+
+let iconElement = document.querySelector("#icon");
+iconElement.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+  );
+iconElement.setAttribute("alt", response.data.condition.icon);
+
+
+weatherForecast(response.data.city);
+
+ }
+
+
+// get current location
+function retrievePosition(position) {
+  let apiKey = "aa443td2ed3a26cd6de4cd01fe8bo0b5";
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  
+  let url2 = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
+  axios.get(`${url2}`).then(displayTemperature);
 }
-let day = days[now.getDay()];
 
-let item = document.querySelector("#date");
-item.innerHTML = formatDate();
 
-let searchForm = document.querySelector("#search");
-searchForm.addEventListener("submit", handleSubmit);
+  
+navigator.geolocation.getCurrentPosition(retrievePosition);
 
-searchCity("Pretoria");
+
+
+
+// convert units
+
+function showFahrenheitTemp(event) {
+event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+function showCelsiusTemp(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+
+
+
+//global variables
+
+let fahrenheitLink = document.querySelector ("#fahrenheit-link");
+fahrenheitLink.addEventListener ("click", showFahrenheitTemp);
+
+let celsiusLink = document.querySelector ("#celsius-link");
+celsiusLink.addEventListener ("click", showCelsiusTemp);
+
+let celsiusTemperature = null;
+
+let form = document.querySelector("form");
+form.addEventListener("submit", searchEngine);
+
+
