@@ -1,5 +1,4 @@
 
-//In your project, display the current date and time
 function updateTime(date) {
   let hours = date.getHours();
   if (hours < 10) {
@@ -37,7 +36,7 @@ return days[day];
 }
 
 
-//display the forecast 
+
 
 function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
@@ -72,7 +71,7 @@ function displayForecast(response) {
 
 
 
-// search engine: a search bar with a button. When searching for a city (i.e. Paris), display the city name on the page after the user submits the form.
+
 
 function searchEngine(event) {
   event.preventDefault();
@@ -86,8 +85,6 @@ function searchEngine(event) {
  
 }
 
-// weather forecast API
-
 function weatherForecast(coordinates) {
 let apiKey = "aa443td2ed3a26cd6de4cd01fe8bo0b5";
 let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${coordinates}&key=${apiKey}`;
@@ -95,7 +92,7 @@ console.log (apiUrl)
 axios.get(apiUrl).then(displayForecast);
 }
 
-//when a user searches for a city (example: New York), it should display the name of the city on the result page and the current temperature of the city.
+
 function displayTemperature(response) {
 
   celsiusTemperature = response.data.temperature.current;
@@ -138,7 +135,7 @@ weatherForecast(response.data.city);
  }
 
 
-// get current location
+
 function retrievePosition(position) {
   let apiKey = "aa443td2ed3a26cd6de4cd01fe8bo0b5";
   let lat = position.coords.latitude;
@@ -155,7 +152,7 @@ navigator.geolocation.getCurrentPosition(retrievePosition);
 
 
 
-// convert units
+
 
 function showFahrenheitTemp(event) {
 event.preventDefault();
@@ -174,7 +171,7 @@ function showCelsiusTemp(event) {
 
 
 
-//global variables
+
 
 let fahrenheitLink = document.querySelector ("#fahrenheit-link");
 fahrenheitLink.addEventListener ("click", showFahrenheitTemp);
