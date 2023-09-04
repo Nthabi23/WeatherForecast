@@ -1,97 +1,101 @@
 body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Cerebri Sans, Helvetica, Arial, sans-serif;
 }
 
-h1 {
-    color: #090101;
-    font-size: 24px;
-    font-weight: 100;
-    line-height: 28px;
-    margin-bottom: 0;
+.weather-container {
+    color: #61677A;
+    display: block;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    text-align: var(--bs-body-text-align);
+    max-width: 600px;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: calc(var(--bs-gutter-x)*.5);
+    padding-right: calc(var(--bs-gutter-x)*.5);
+    width: 100%;
+    background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+    border-radius: 30px 30px
 }
 
-h2 {
-    margin-left: 50px;
+
+.mainCity {
+
+    font-size: 30px;
 }
 
-ul {
-    margin: 0;
-    padding: 0;
+.col-6 {
+    padding: 0px;
+}
+
+.units {
+    font-size: 15px;
+    vertical-align: top;
+    font-weight: bold;
+
+}
+
+#temperature {
+
+    font-size: 50px;
+}
+
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+form {
+    display: block;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 30px;
+    max-width: 600px;
+    text-align: center;
+}
+
+#signature {
+    text-align: center;
+    font-size: 12px;
+    padding-bottom: 5px;
+
 }
 
 li {
     list-style: none;
     margin: 0;
     padding: 0;
-    color: rgb(0, 0, 0);
-    font-size: 16px;
-    font-weight: 100;
-    line-height: 19px;
+    font-size: 15px;
 }
 
-a {
-    text-decoration: none;
+#celsius-link {
+    cursor: default;
 }
 
-a:hover {
-    text-decoration: underline;
+#fahrenheit-link {
+    cursor: default;
 }
 
-li:first-letter {
-    text-transform: capitalize;
+#searchButton {
+    cursor: default;
 }
 
-.float-left {
-    height: 80px;
-    width: 80px;
-    position: relative;
-    top: -16px;
-}
+.forecast {
+    text-align: center;
 
-.weather {
-    background: radial-gradient(circle at -1% 57.5%, rgb(19, 170, 82) 0%, rgb(0, 102, 43) 90%);
-    border: 2px solid rgb(28, 28, 30);
-    border-radius: 20px;
-    padding: 30px;
-}
-
-.temp {
-    font-size: 60px;
-}
-
-.units {
-    position: relative;
-    top: -30px;
-    text-decoration: none;
-}
-
-.wrapper {
-    max-width: 600px;
-    margin: 30px auto;
-}
-
-.row {
-    margin-bottom: 10px;
-}
-
-.weather-forecast {
-    margin-top: 20px;
-    color: black;
-}
-
-.weather-forecast.date {
-    font-size: 16;
-    opacity: 0.5;
-}
-
-.forecast-min {
-    opacity: 0.5;
-}
-
-.weather-forecast-temperature {
+    padding-top: 20px;
     font-size: 13px;
+
 }
 
-.col-2 {
-    display: inline;
+
+
+.forecast-temperature-max {
+    font-weight: bold;
 }
