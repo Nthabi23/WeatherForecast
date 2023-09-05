@@ -22,7 +22,8 @@ body {
 
 
 .myCity {
-
+text-align: center;
+margin: auto 0px;
     font-size: 30px;
 }
 
