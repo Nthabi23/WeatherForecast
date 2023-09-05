@@ -1,6 +1,6 @@
 body {
     font-family: 'Roboto', sans-serif;
-    font-weight: bold 500px;
+    
     
 }
 
@@ -85,16 +85,11 @@ li {
     cursor: pointer;
 }
 
-.forecast {
-    text-align: center;
 
-    padding-top: 20px;
-    font-size: 13px;
-
-}
 
 
 
 .forecast-temperature-max {
+    font-size: 30px;
     font-weight: bold;
 }

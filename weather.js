@@ -27,7 +27,7 @@ let currentDate = document.querySelector("#current-time");
 let dateElement = new Date();
 currentDate.innerHTML = updateTime(dateElement);
 
-//format forecast day
+
 function formatForecastDate(timestamp) {
 let date = new Date(timestamp * 1000);
 let day = date.getDay();
