@@ -73,15 +73,15 @@ li {
 }
 
 #celsius-link {
-    cursor: default;
+    cursor: pointer;
 }
 
 #fahrenheit-link {
-    cursor: default;
+    cursor: pointer;
 }
 
 #searchButton {
-    cursor: default;
+    cursor: pointer;
 }
 
 .forecast {
