@@ -25,7 +25,7 @@ body {
 .myCity {
 text-align: center;
 margin: auto 0px;
-    font-size: 30px;
+    font-size: 40px;
 }
 
 .col-6 {
@@ -66,7 +66,7 @@ li {
     list-style: none;
     margin: 0;
     padding: 0;
-    font-weight: 150px;
+    font-weight: 250px;
     font-size: 20px;
 }
 
@@ -86,4 +86,7 @@ li {
 .forecast-temperature-max {
     font-size: 30px;
     font-weight: bold;
+}
+.forecast-temperature-min {
+    font-size: 25px;
 }
