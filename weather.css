@@ -17,7 +17,7 @@ body {
     padding-left: calc(var(--bs-gutter-x)*.5);
     padding-right: calc(var(--bs-gutter-x)*.5);
     width: 100%;
-    background-image: url("pink clouds.jpg");
+    background-image: img("pink clouds.jpg");
     
     border-radius: 30px 30px
 }
