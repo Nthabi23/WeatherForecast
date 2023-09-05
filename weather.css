@@ -4,9 +4,8 @@ body {
 }
 
 .weather-container {
-    color: #61677A;
+    color: #393d48;
     display: block;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
     --bs-gutter-x: 1.5rem;
     --bs-gutter-y: 0;
     text-align: var(--bs-body-text-align);
@@ -18,7 +17,6 @@ body {
     padding-right: calc(var(--bs-gutter-x)*.5);
     width: 100%;
     background-image: url("img/pink clouds.jpg");
-    
     border-radius: 30px 30px
 }
 
