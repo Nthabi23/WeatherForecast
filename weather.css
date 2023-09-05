@@ -90,3 +90,7 @@ li {
 .forecast-temperature-min {
     font-size: 25px;
 }
+footer {
+    text-align: center;
+    margin: auto 0px;
+}
