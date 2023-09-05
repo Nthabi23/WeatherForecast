@@ -19,7 +19,7 @@ function updateTime(date) {
     "Saturday"
   ];
   let day = days[dayElement];
-  return `${day}, ${hours}:${minutes}`;
+  return `${day} ${hours}:${minutes}`;
 }
 
 
